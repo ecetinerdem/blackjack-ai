@@ -1,12 +1,19 @@
 package main
 
+import "fmt"
+
 func main() {
 	// Clear the Screen
-
+	clearScreen()
 	// Welcome message
-
+	fmt.Println("=== Go BlackJack ===")
+	fmt.Println("Welcome to Go BlackJack! You are playing against an AI with card counting abilities")
 	// Get a deck of cards
+	deck := NewDeck().Shuffle()
 
+	for _, c := range deck {
+		fmt.Printf("%s%s\n", c.Value, c.Suit)
+	}
 	// Create a card counter for the AI to use
 
 	for {
@@ -22,5 +29,3 @@ func main() {
 
 	}
 }
-
-// fmt.Print("\033[H\033[2J\033[3J")
