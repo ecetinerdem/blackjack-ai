@@ -11,7 +11,7 @@ func PlayRound(deck *Deck, cardCounter *CardCounter) {
 	human := NewPlayer("Human", false)
 	ai := NewPlayer("AI", true)
 
-	fmt.Println("Players", dealer.Name, human.Name, ai.Name)
+	fmt.Println("Players: ", dealer.Name, human.Name, ai.Name)
 
 	// Initial deal: Two cards per player
 	for range 2 {
@@ -27,6 +27,7 @@ func PlayRound(deck *Deck, cardCounter *CardCounter) {
 	ai.DisplayHand(false)
 
 	// Play each player's turn
+	human.PlayTurn(deck, cardCounter, dealer.Hand[0])
 
 	// Show results
 

@@ -54,5 +54,6 @@ func (d *Deck) Draw() Card {
 	}
 
 	card := (*d)[0]
+	*d = (*d)[1:]
 	return card
 }

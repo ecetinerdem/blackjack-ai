@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	// Clear the Screen
@@ -30,10 +33,17 @@ func main() {
 		PlayRound(&deck, cardCounter)
 
 		// Ask if the player wants to play another round
+		fmt.Printf("\n Play another round? (y/n): ")
+		var choice string
+		fmt.Scanln(&choice)
+		choice = strings.ToLower(choice)
 
 		// If not quit the game
 
-		// Clear the secreen again
+		if choice == "n" {
+			fmt.Println("Thanks for playing!")
+			break
+		}
 
 	}
 }
