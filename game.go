@@ -29,9 +29,41 @@ func PlayRound(deck *Deck, cardCounter *CardCounter) {
 	// Play each player's turn
 	human.PlayTurn(deck, cardCounter, dealer.Hand[0])
 
+	if !human.IsBust {
+		// Let ai player play
+		ai.PlayTurn(deck, cardCounter, dealer.Hand[0])
+		dealer.playDealerTurn(deck, cardCounter)
+	}
+
 	// Show results
+	fmt.Println("\n=== Results ===")
+	fmt.Printf("Dealer: %d\n", dealer.Score)
+	fmt.Printf("Human: %d\n", human.Score)
+	fmt.Printf("AI: %d\n", ai.Score)
 
 	// Display results
+	fmt.Println(human.DetermineResult(*dealer))
+	fmt.Println(ai.DetermineResult(*dealer))
 
 	// Display card counting statistics
+
+	displayCardCountingStats(deck, cardCounter)
+}
+
+func displayCardCountingStats(deck *Deck, cardCounter *CardCounter) {
+	fmt.Println("\n=== Card Counting Statistics ===")
+	fmt.Printf("Final Running Count: %d\n", cardCounter.RunningCount)
+	fmt.Printf("Final True Count: %.f\n", cardCounter.TrueCount)
+	fmt.Printf("Cards R emaining in Deck: %d\n", len(*deck))
+
+	fmt.Printf("\n Card Distribution Seen: ")
+	values := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
+
+	for _, value := range values {
+		fmt.Printf("%s: %d   ", value, cardCounter.SeenCard[value])
+		if value == "6" {
+			fmt.Println() // Put in a line break for readebility
+		}
+	}
+	fmt.Println()
 }
